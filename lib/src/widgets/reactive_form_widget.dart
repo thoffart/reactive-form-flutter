@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:reactive_forms/src/models/reactive_form_options.dart';
 import 'package:reactive_forms/src/widgets/abstract_control.dart';
-import 'package:reactive_forms/src/widgets/form_array.dart';
 
 class ReactiveForm extends StatefulWidget {
 
@@ -11,7 +10,7 @@ class ReactiveForm extends StatefulWidget {
   final WillPopCallback onWillPop;
   final VoidCallback onChanged;
   final ReactiveFormOptions options;
-  final Widget Function(dynamic formKey) child;
+  final Widget child;
   final InputDecoration defaultInputDecoration;
 
   const ReactiveForm({
@@ -100,12 +99,12 @@ class ReactiveFormState extends State<ReactiveForm> {
 
   @override
   void initState() {
+    super.initState();
     _currentFormGroup = widget.formGroup;
     _formControllers = _buildFormControllers(widget.formGroup);
     _formFocusNodes = _buildFormFocusNodes(widget.formGroup);
     _formWidgets = _buildFormWidgets(widget.formGroup);
     initialized = true;
-    super.initState();
   }
 
   @override
@@ -120,6 +119,8 @@ class ReactiveFormState extends State<ReactiveForm> {
   Map<String, dynamic> get formFocusNodes => _formFocusNodes;
 
   Map<String, dynamic> get formWidgets => _formWidgets;
+
+  Map<String, dynamic> get formGroup => _currentFormGroup;
   
 
   @override
